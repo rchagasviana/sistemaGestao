@@ -2,17 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+//Aula 01 - Entendendo rodas sem redirecionar para uma view.
 
+//Rota para página inicial da aplicação
 Route::get('/', function () {
-    return view('welcome');
+    echo "PáginaInicial";
 });
+
+//Rota para página sobre-nos
+Route::get('/sobre-nos', function() {
+    echo "sobre-nos";
+});
+
+//Rota para página de contatos
+Route::get('/contatos',function(){
+    echo "contatos";
+});
+
+
