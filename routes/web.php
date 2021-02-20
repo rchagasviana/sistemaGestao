@@ -1,7 +1,7 @@
 <?php
 /*
-Aula 07- Implementação de rotas login, clientes, fornecedores e produtos 
-condições de recebimento
+Aula 08- Agrupamento de Rotas 
+Objetivo: separar as páginas públicas das páginas restritas
 */
 
 use Illuminate\Support\Facades\Route;
@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','PrincipalController@principal');
 Route::get('/sobrenos','SobreNosController@sobrenos');
 Route::get('/contato','ContatoController@contato');
-//Novas Rotas
 Route::get('/login',function(){return "rotaLogin";});
-Route::get('/clientes',function(){return "rotaClientes";});
-Route::get('/fornecedores',function(){return "rotaFornecedores";});
-Route::get('/produtos',function(){return "rotaProdutos";});
-
-
+//Rotas que serão destinadas à área restrita do sistema
+Route::prefix('/app')->group(function(){// o método group() espera receber uma função de callback que receberás as rotas que farão paerte do grupo
+    Route::get('/clientes',function(){return "rotaClientes";});
+    Route::get('/fornecedores',function(){return "rotaFornecedores";});
+    Route::get('/produtos',function(){return "rotaProdutos";});
+});
 
 /*
 ATENÇÃO: 
