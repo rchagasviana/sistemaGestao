@@ -7,9 +7,15 @@ Route::get('/sobrenos','SobreNosController@sobrenos');
 Route::get('/contato','ContatoController@contato');
 
  //o nome da variável não precisa ser idêntico ao parâmetro
-//Passagem de parâmetro - Função de Callback
-Route::get('/contato/{nome}/{categoria}/{mensagem}',
-    function(String $nome, String $categoria, String $mensagem){
+/*
+Passagem de parâmetro - Função de Callback - Parâmetros opcionais
+
+*/
+Route::get('/contato/{nome?}/{categoria?}/{mensagem?}',
+    function(
+        String $nome="Desconhecido",
+        String $categoria="Categoria desconhecida",
+        String $mensagem="Mensagem desconhecida"){
         echo "<b>Parâmetros:</b> $nome -- $categoria -- $mensagem";
 });
 
