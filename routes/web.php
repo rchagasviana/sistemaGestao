@@ -1,6 +1,8 @@
 <?php
 /*
-Aula 10-Redirecionando rotas 
+Aula 11-Rota de contigência (fallback) 
+ Rota de fallback é uma rota padrão que é acionada sempre que ocorre um erro na aplicação.
+ A rota que direciona para a página que contém a informação que ocorreu o erro 404, por exemplo.
 */
 
 use Illuminate\Support\Facades\Route;
@@ -23,11 +25,6 @@ Route::prefix('/app')->group(function(){// o método group() espera receber uma 
     Route::get('/fornecedores',function(){return "rotaFornecedores";});
     Route::get('/produtos',function(){return "rotaProdutos";});
 });
-//Aula de Redirecionamento de rotas
-/*
-Há duas formas de efetuar o redirecionamento: usando método redirect ou o retorno da função de callback
-de um controlador
-*/
 
 //1°)Usando o redirect do método Route
 Route::get('/rota01',function(){return "rota01";})->name('site.rota01');
@@ -41,11 +38,10 @@ Route::get('/rota04',function(){return "rota04";})->name('site.rota04');
 Route::get('/rota03',function(){
     return redirect()->route('site.rota04');})->name('site.rota03');
 
-
-
-
-
-
+//Rota de fallback
+Route::fallback(function(){
+    return 'Ocorre um erro!<a href="'.route('site.index').'">Clique aqui</a> para ir para Página Inicial';
+});
 
 /*
 ATENÇÃO: 
