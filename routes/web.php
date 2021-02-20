@@ -8,16 +8,16 @@ Route::get('/contato','ContatoController@contato');
 
  //o nome da variável não precisa ser idêntico ao parâmetro
 /*
-Passagem de parâmetro - Função de Callback - Parâmetros opcionais
-
+Aula 06- Passagem de parâmetro - Função de Callback - tipogem de parâmetros e 
+condições de recebimento
 */
-Route::get('/contato/{nome?}/{categoria?}/{mensagem?}',
+Route::get('/contato/{nome}/{categoria_id}/{mensagem?}',
     function(
-        String $nome="Desconhecido",
-        String $categoria="Categoria desconhecida",
+        String $nome,
+        int $categoria_id,
         String $mensagem="Mensagem desconhecida"){
-        echo "<b>Parâmetros:</b> $nome -- $categoria -- $mensagem";
-});
+        echo "<b>Parâmetros:</b> $nome -- $categoria_id -- $mensagem";
+})->where('nome','[A-Za-z]+')->where('categoria_id','[0-9]+'); //Condição para que o Laravel receba o parâmetro de acordo com o tipo e o '+' indica que precisa o usuário deve enviar pelo menos um caractere
 
 /*
 ATENÇÃO: 
