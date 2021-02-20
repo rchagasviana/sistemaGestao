@@ -1,7 +1,6 @@
 <?php
 /*
-Aula 09-Nomeando Rotas 
-Objetivo: separar as páginas públicas das páginas restritas
+Aula 10-Redirecionando rotas 
 */
 
 use Illuminate\Support\Facades\Route;
@@ -13,9 +12,7 @@ use Illuminate\Support\Facades\Route;
  (observar as view's criadas que estão direcionando os links pelo nome da rota nesta aula.)
 A vantagem de nomear as rotas é a indepência entre a rota e os links, umas vezes que estes
 podem ser chamados através dos nomes e não do caminho da rota
-
  */
-
 Route::get('/','PrincipalController@principal')->name('site.index');
 Route::get('/sobrenos','SobreNosController@sobrenos')->name('site.sobrenos'); //pode ser escolhido qualquer nome, no entanto para efeitos de organização, usa-se o mesmo da view para qual o controlador irá direcionar
 Route::get('/contato','ContatoController@contato')->name('site.contato');
@@ -26,6 +23,29 @@ Route::prefix('/app')->group(function(){// o método group() espera receber uma 
     Route::get('/fornecedores',function(){return "rotaFornecedores";});
     Route::get('/produtos',function(){return "rotaProdutos";});
 });
+//Aula de Redirecionamento de rotas
+/*
+Há duas formas de efetuar o redirecionamento: usando método redirect ou o retorno da função de callback
+de um controlador
+*/
+
+//1°)Usando o redirect do método Route
+Route::get('/rota01',function(){return "rota01";})->name('site.rota01');
+Route::get('/rota02',function(){return "rota02";})->name('site.rota02');
+//Redirecionando
+Route::redirect('/rota01','/rota02'); // quando acessando /rota02, somos direcionados para /rota01
+
+//2°)Usando a função de callback
+Route::get('/rota04',function(){return "rota04";})->name('site.rota04');
+//Redirecionando
+Route::get('/rota03',function(){
+    return redirect()->route('site.rota04');})->name('site.rota03');
+
+
+
+
+
+
 
 /*
 ATENÇÃO: 
