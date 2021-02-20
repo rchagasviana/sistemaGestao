@@ -1,14 +1,24 @@
 <?php
 /*
-Aula 08- Agrupamento de Rotas 
+Aula 09-Nomeando Rotas 
 Objetivo: separar as páginas públicas das páginas restritas
 */
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/','PrincipalController@principal');
-Route::get('/sobrenos','SobreNosController@sobrenos');
-Route::get('/contato','ContatoController@contato');
+/*
+ O nome definido para rota tem o objetivo de facilitar a chamada de uma rota 
+ sempre que for usada dentro da aplicação. Por exemplo, sempre que precisarmos, através de um link na view, 
+ direcioná-la para /app/clientes podemoss chamá-la pelo seu "apelido".
+ (observar as view's criadas que estão direcionando os links pelo nome da rota nesta aula.)
+A vantagem de nomear as rotas é a indepência entre a rota e os links, umas vezes que estes
+podem ser chamados através dos nomes e não do caminho da rota
+
+ */
+
+Route::get('/','PrincipalController@principal')->name('site.index');
+Route::get('/sobrenos','SobreNosController@sobrenos')->name('site.sobrenos'); //pode ser escolhido qualquer nome, no entanto para efeitos de organização, usa-se o mesmo da view para qual o controlador irá direcionar
+Route::get('/contato','ContatoController@contato')->name('site.contato');
 Route::get('/login',function(){return "rotaLogin";});
 //Rotas que serão destinadas à área restrita do sistema
 Route::prefix('/app')->group(function(){// o método group() espera receber uma função de callback que receberás as rotas que farão paerte do grupo

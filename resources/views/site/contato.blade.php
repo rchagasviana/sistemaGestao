@@ -2,12 +2,12 @@
 <h1>Página de Contato</h1>
 <ul>
     <li>
-        <a href="/">Página Inicial</a>
+        <a href="{{route('site.index')}}">Página Inicial</a>
     </li>
     <li>
-        <a href="/sobrenos">Sobre Nós</a>
+        <a href="{{route('site.sobrenos')}}">Sobre Nós</a>
     </li>
     <li>
-         <a href="/contato">Contatos</a>
+         <a href="{{route('site.contato')}}">Contatos</a>
     </li>
 </ul>
