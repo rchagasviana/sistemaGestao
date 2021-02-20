@@ -1,12 +1,8 @@
 <?php
 /*
-Aula 11-Rota de contigência (fallback) 
- Rota de fallback é uma rota padrão que é acionada sempre que ocorre um erro na aplicação.
- A rota que direciona para a página que contém a informação que ocorreu o erro 404, por exemplo.
+Aula 12-Encaminhando parâmetros da rota para o controlador
 */
-
 use Illuminate\Support\Facades\Route;
-
 /*
  O nome definido para rota tem o objetivo de facilitar a chamada de uma rota 
  sempre que for usada dentro da aplicação. Por exemplo, sempre que precisarmos, através de um link na view, 
@@ -25,38 +21,14 @@ Route::prefix('/app')->group(function(){// o método group() espera receber uma 
     Route::get('/fornecedores',function(){return "rotaFornecedores";});
     Route::get('/produtos',function(){return "rotaProdutos";});
 });
-
-//1°)Usando o redirect do método Route
-Route::get('/rota01',function(){return "rota01";})->name('site.rota01');
-Route::get('/rota02',function(){return "rota02";})->name('site.rota02');
-//Redirecionando
-Route::redirect('/rota01','/rota02'); // quando acessando /rota02, somos direcionados para /rota01
-
-//2°)Usando a função de callback
-Route::get('/rota04',function(){return "rota04";})->name('site.rota04');
-//Redirecionando
-Route::get('/rota03',function(){
-    return redirect()->route('site.rota04');})->name('site.rota03');
-
 //Rota de fallback
 Route::fallback(function(){
-    return 'Ocorre um erro!<a href="'.route('site.index').'">Clique aqui</a> para ir para Página Inicial';
+    return '<h1>Erro 404</h1><a href="'.route('site.index').'">Clique aqui</a> para ir para Página Inicial';
 });
-
+//Encaminhando parâmetros para o Controlador
+Route::get('/teste/{p1}/{p2}','TesteController@teste')->name('teste')->where('p1','[0-9]+')->where('p2','[0-9]+');
 /*
-ATENÇÃO: 
-Route:get(CAMINHO,AÇÃO);
-Dentro do modelo MVC, a ação a ser chamada para execução é uma método dentro de um Controlador 
-Exemplo: 
-    -Sintaxe: Route:get('rota','ClasseController@nomeDoMétodo');
-    Exemplo:  Route:get('/usuario','UsuarioControlle@listarTodos');
-Neste caso, ao acessar a rota /usuario o método listarTodos que está dentro da classe UsuarioController
-é acionado para executar uma ação (passar parâmetros para uma classe reposável por buscar os usuários
-em uma base dados e depois retornar os dados para uma view, por exemplo)
-
-para criar uma nova classe que funcionará como um Controller, pode-se utilizar
-o comando "php artisan make:controller nomeDaClasseController". O Nome no "Controller" no final da classe é
-apenas um quesito de boas práticas, uma vez que a herança da classe Controller é que garante as funcionalidades
-à classe.
+Atenção: É importante observar na ordem de recebimento dos valores pelo controlador.
+Fica implícito que serão passados da seguinte forma TesteController@teste($p1,$p2), logo
+a ordem com que os parâmetros serão recebido no método resposável deve ser respeitada
 */
-
