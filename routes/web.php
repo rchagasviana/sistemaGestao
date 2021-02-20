@@ -2,10 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-//Aula 02 - Implementando Controladores e seus métodos.
 Route::get('/','PrincipalController@principal');
 Route::get('/sobrenos','SobreNosController@sobrenos');
 Route::get('/contato','ContatoController@contato');
+
+ //o nome da variável não precisa ser idêntico ao parâmetro
+//Passagem de parâmetro - Função de Callback
+Route::get('/contato/{nome}/{categoria}/{mensagem}',
+    function(String $nome, String $categoria, String $mensagem){
+        echo "<b>Parâmetros:</b> $nome -- $categoria -- $mensagem";
+});
 
 /*
 ATENÇÃO: 
