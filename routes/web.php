@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 //Aula 02 - Implementando Controladores e seus métodos.
 Route::get('/','PrincipalController@principal');
-Route::get('/sobre-nos','SobreNosController@sobrenos');
+Route::get('/sobrenos','SobreNosController@sobrenos');
 Route::get('/contato','ContatoController@contato');
 
 /*
