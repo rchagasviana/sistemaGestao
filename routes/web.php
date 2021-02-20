@@ -1,23 +1,21 @@
 <?php
+/*
+Aula 07- Implementação de rotas login, clientes, fornecedores e produtos 
+condições de recebimento
+*/
 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/','PrincipalController@principal');
 Route::get('/sobrenos','SobreNosController@sobrenos');
 Route::get('/contato','ContatoController@contato');
+//Novas Rotas
+Route::get('/login',function(){return "rotaLogin";});
+Route::get('/clientes',function(){return "rotaClientes";});
+Route::get('/fornecedores',function(){return "rotaFornecedores";});
+Route::get('/produtos',function(){return "rotaProdutos";});
 
- //o nome da variável não precisa ser idêntico ao parâmetro
-/*
-Aula 06- Passagem de parâmetro - Função de Callback - tipogem de parâmetros e 
-condições de recebimento
-*/
-Route::get('/contato/{nome}/{categoria_id}/{mensagem?}',
-    function(
-        String $nome,
-        int $categoria_id,
-        String $mensagem="Mensagem desconhecida"){
-        echo "<b>Parâmetros:</b> $nome -- $categoria_id -- $mensagem";
-})->where('nome','[A-Za-z]+')->where('categoria_id','[0-9]+'); //Condição para que o Laravel receba o parâmetro de acordo com o tipo e o '+' indica que precisa o usuário deve enviar pelo menos um caractere
+
 
 /*
 ATENÇÃO: 
