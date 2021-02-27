@@ -1,21 +1,18 @@
 <?php
 /*
-Aula 14-Sintaxe do Blade - Didática
-
+Aula 14-Sintaxe do Blade-Comentário em Sintaxe Blade e Inserção de Blocos PHP
 Blade é o motor de renderização de Views do Laravel e possui uma sintaxe
 de programação PHP mais simples, além de um modelo de herança de tamplates que facilita
 o reaporveitamento do código. É importante lembrar que a sintaxe pura do PHP não é impedida
 de ser usada.
 */
 use Illuminate\Support\Facades\Route;
-/*
-O nome definido para rota tem o objetivo de facilitar a chamada de uma rota 
+/*O nome definido para rota tem o objetivo de facilitar a chamada de uma rota 
 sempre que for usada dentro da aplicação. Por exemplo, sempre que precisarmos, através de um link na view, 
 direcioná-la para /app/clientes podemoss chamá-la pelo seu "apelido".
 (observar as view's criadas que estão direcionando os links pelo nome da rota nesta aula.)
 A vantagem de nomear as rotas é a indepência entre a rota e os links, umas vezes que estes
-podem ser chamados através dos nomes e não do caminho da rota
- */
+podem ser chamados através dos nomes e não do caminho da rota*/
 //Rotas-padrão
 Route::get('/','PrincipalController@principal')->name('site.index');
 Route::get('/sobrenos','SobreNosController@sobrenos')->name('site.sobrenos'); 
