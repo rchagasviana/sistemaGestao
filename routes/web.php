@@ -1,6 +1,6 @@
 <?php
 /*
-Aula 14-Sintaxe do Blade-Comentário em Sintaxe Blade e Inserção de Blocos PHP
+Aula 14-Sintaxe do Blade-Comentário em Sintaxe Blade e Inserção de Blocos PHP--
 Blade é o motor de renderização de Views do Laravel e possui uma sintaxe
 de programação PHP mais simples, além de um modelo de herança de tamplates que facilita
 o reaporveitamento do código. É importante lembrar que a sintaxe pura do PHP não é impedida
